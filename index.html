@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+    <script src="./ColourgreyShorterJS/ColourgreyShorterJS.js"></script>
+    <style>
+        .hljs-string,
+        .hljs-regexp {
+            color: #a72429 !important;
+        }
+
+        .hljs-section,
+        .hljs-selector-class,
+        .hljs-template-variable,
+        .hljs-deletion {
+            color: #f88 !important;
+        }
+
+        .hljs-title.function_ {
+            color: #722094 !important;
+        }
+
+        .hljs-variable.language_ {
+            color: #5ae !important;
+        }
+
+        .hljs-attr {
+            color: #20e080 !important;
+        }
+
+        .hljs {
+            background: #16131d !important;
+            color: #ffc4ff !important;
+        }
+
+        .hljs-tag {
+            color: #744724 !important;
+        }
+
+        .hljs-name {
+            color: #4040f0 !important;
+        }
+
+        .hljs-comment {
+            color: #40b040 !important;
+        }
+
+        .hljs-literal,
+        .hljs-keyword {
+            color: #3140ad !important;
+        }
+
+        .codearea-code {
+            width: 50em;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="header">
+
+        </div>
+        <div class="code codearea-code">
+            <pre>
+                <code class="language-javascript">
+                    var mynewarray = [0,['a',1],'b'];
+                    var mynewsimplearray = mynewarray.returnAllInOneArr();
+                    console.log(mynewsimplearray);
+                    /* output in browser console: [0,'a',1,'b'] */
+
+                    var mynewstring = "test";
+                    var mynewstringHW = mynewstring.insertOn("Hello World!",3);
+                    console.log(mynewstringHW);
+                    /* output in browser console: "tesHello World!t" */
+
+                    </code>
+                    <code class="language-html">
+                    &lt;div data-attr=&quot;myDiv&quot;&gt;change innerHTML here&lt;/div&gt;
+                    </code><code class="language-javascript">
+                    window.setTimeout(function(){document.getElementsByAttrValue("data-attr","myDiv")[0].innerHTML="Hello World!";},1200);
+
+                    /* in 1.2 seconds, innerHTML of first div that has 'myDiv' data-attr will change to "Hello World!" */
+                </code>
+            </pre>
+        </div>
+    </div>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+    <script>
+        $(`.codearea-code`).each(function (index, el) {
+            hljs.highlightElement(el);
+        });
+    </script>
+</body>
+
+</html>
