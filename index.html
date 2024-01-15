@@ -375,7 +375,14 @@ window.setTimeout(IloveYoufunc,1000);
                 thistab0.classList.add("showntab");
             }
             if (parsedhashtext == 'tab_demo') {
+                if (tab1shown == false) {
+                    tab1shown = true;
+                }
                 thistab1.classList.add("showntab");
+                if (tab1shown == true) {
+                    document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "innerHTML will be changed here(in 1200 milliseconds)";
+                    window.setTimeout(function () { document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "hello World!"; tab1shown = false }, 1200);
+                }
             }
             if (parsedhashtext == 'tab_docs') {
                 thistab2.classList.add("showntab");
