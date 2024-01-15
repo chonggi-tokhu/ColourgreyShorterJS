@@ -372,12 +372,14 @@ window.setTimeout(IloveYoufunc,1000);
         window.addEventListener("load", function (ev) {
             var parsedhashtext = new URL(decodeURI(window.location.href)).hash.replace('#', '');
             if (parsedhashtext == 'tab_code') {
+                thistabselect0.classList.add("shownselect");
                 thistab0.classList.add("showntab");
             }
             if (parsedhashtext == 'tab_demo') {
                 if (tab1shown == false) {
                     tab1shown = true;
                 }
+                thistabselect1.classList.add("shownselect");
                 thistab1.classList.add("showntab");
                 if (tab1shown == true) {
                     document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "innerHTML will be changed here(in 1200 milliseconds)";
@@ -385,6 +387,7 @@ window.setTimeout(IloveYoufunc,1000);
                 }
             }
             if (parsedhashtext == 'tab_docs') {
+                thistabselect2.classList.add("shownselect");
                 thistab2.classList.add("showntab");
             }
         });
