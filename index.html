@@ -74,7 +74,22 @@
             display: flex;
         }
 
-        .docinner {
+        .tabs .tab_select .select {
+            border-radius: 8vmax;
+            border: 3px groove #40b040;
+        }
+
+        .tabs .tab_select .select:not(.shownselect) {
+            padding: 0em !important;
+            height: min-content !important;
+        }
+
+        .tabs .tab_select .select.shownselect {
+            border: 3px groove #be0456;
+            padding: 0.2em;
+        }
+
+        .tab .tab_select .select .docinner {
             height: max-content;
             overflow-y: scroll;
         }
@@ -100,9 +115,9 @@
         </div>
         <div class="tabs">
             <div class="tab_select">
-                <div data-tabselectnumb="0">basic usage examples</div>
-                <div data-tabselectnumb="1">real demo</div>
-                <div data-tabselectnumb="2">docs</div>
+                <div data-tabselectnumb="0" class="select">basic usage examples</div>
+                <div data-tabselectnumb="1" class="select">real demo</div>
+                <div data-tabselectnumb="2" class="select">docs</div>
             </div>
             <div class="tabs_group">
 
@@ -133,13 +148,27 @@
                 </div>
                 <div class="tab tab_demo" data-tabnumb="1" id="tab_demo">
                     <div data-attr="myDiv">innerHTML will be changed here(in 1200 milliseconds)</div>
+                    <div class="codearea-code">
+                        <pre>
+                            <code class="language-html">
+&lt;div data-attr="myDiv"&gt;innerHTML will be changed here(in 1200 milliseconds)&lt;/div&gt;
+                            </code>
+                            <code class="language-javascript">
+document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "innerHTML will be changed here(in 1200 milliseconds)";
+window.setTimeout(function () { document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "hello World!";}, 1200);
+                            </code>
+                        </pre>
+                    </div>
                     <script>
                         document.getElementsByAttrValue("data-tabselectnumb", "1")[0].addEventListener("click", function (ev2) {
                             if (tab1shown == false) { tab1shown = true };
                             if (!thistab1.classList.contains("showntab")) {
                                 thistab1.classList.add("showntab");
+                                thistabselect1.classList.add("shownselect");
                                 thistab0.classList.remove("showntab");
+                                thistabselect0.classList.remove("shownselect");
                                 thistab2.classList.remove("showntab");
+                                thistabselect2.classList.remove("shownselect");
                                 if (tab1shown == true) {
                                     document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "innerHTML will be changed here(in 1200 milliseconds)";
                                     window.setTimeout(function () { document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "hello World!"; tab1shown = false }, 1200);
@@ -195,9 +224,9 @@
                                         <div class="codearea-code">
                                             <pre>
                                                 <code class="language-javascript">
-                                                    var myarray = [1,['a',[2,3,4],'b',5,'c','d'],['e'],6,7,8,[9,'f','g'],'h',0];
-                                                    var mynewarray = myarray.returnAllInOneArr();
-                                                    /* mynewarray is [1,'a',2,3,4,'b',5,'c','d','e',6,7,8,9,'f','g','h',0] here. */
+var myarray = [1,['a',[2,3,4],'b',5,'c','d'],['e'],6,7,8,[9,'f','g'],'h',0];
+var mynewarray = myarray.returnAllInOneArr();
+/* mynewarray is [1,'a',2,3,4,'b',5,'c','d','e',6,7,8,9,'f','g','h',0] here. */
                                                 </code>
                                             </pre>
                                         </div>
@@ -219,9 +248,9 @@
                                         <div class="codearea-code">
                                             <pre>
                                                 <code class="language-javascript">
-                                                    var mystring ="Hello World!";
-                                                    var mynewstring = mystring.splitByIdx(3);
-                                                    /* mynewstring is ["hel", "lo World!"] */
+var mystring ="Hello World!";
+var mynewstring = mystring.splitByIdx(3);
+/* mynewstring is ["hel", "lo World!"] */
                                                 </code>
                                             </pre>
                                         </div>
@@ -236,9 +265,9 @@
                                         <div class="codearea-code">
                                             <pre>
                                                 <code class="language-javascript">
-                                                    var mystring = "Hello World!";
-                                                    var mynewstring = mystring.insertOn(" ",4).insertOn("f",6);
-                                                    /* mynewstring is "Hell of World!" */
+var mystring = "Hello World!";
+var mynewstring = mystring.insertOn(" ",4).insertOn("f",6);
+/* mynewstring is "Hell of World!" */
                                                 </code>
                                             </pre>
                                         </div>
@@ -254,12 +283,12 @@
                                     <div class="codearea-code">
                                         <pre>
                                             <code class="language-html">
-                                                &lt;div data-attr="myDiv"&gt;fuck you&lt;/&gt;
+&lt;div data-attr="myDiv"&gt;fuck you&lt;/&gt;
                                             </code>
                                             <code class="language-javascript">
-                                                function IloveYoufunc(){document.getElementsByAttrValue("data-attr","myDiv")[0].innerHTML=`I love you. I'm sorry that I told you f-word.`;}
-                                                window.setTimeout(IloveYoufunc,1000);
-                                                /* in 1 second, text in div[data-attr="myDiv"] will tell 'I love you' and appologise to you. LOL */
+function IloveYoufunc(){document.getElementsByAttrValue("data-attr","myDiv")[0].innerHTML=`I love you. I'm sorry that I told you f-word.`;}
+window.setTimeout(IloveYoufunc,1000);
+/* in 1 second, text in div[data-attr="myDiv"] will tell 'I love you' and appologise to you. LOL */
                                             </code>
                                         </pre>
                                     </div>
@@ -321,8 +350,11 @@
             if (!thistab0.classList.contains("showntab")) {
                 tab1shown = false;
                 thistab0.classList.add("showntab");
+                thistabselect0.classList.add("shownselect");
                 thistab1.classList.remove("showntab");
+                thistabselect1.classList.remove("shownselect");
                 thistab2.classList.remove("showntab");
+                thistabselect2.classList.remove("shownselect");
             }
         });
 
@@ -330,8 +362,11 @@
             if (!thistab2.classList.contains("showntab")) {
                 tab1shown = false;
                 thistab2.classList.add("showntab");
+                thistabselect2.classList.add("shownselect");
                 thistab0.classList.remove("showntab");
+                thistabselect0.classList.remove("shownselect");
                 thistab1.classList.remove("showntab");
+                thistabselect1.classList.remove("shownselect");
             }
         });
         window.addEventListener("load", function (ev) {

@@ -8,7 +8,10 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
                     rtv[rtv.length] = aderr[ijk];
                 };
             } else {
-                rtv[rtv.length] = arr[i];
+                if (!Array.isArray(arr[i])) {
+                    rtv[rtv.length] = arr[i];
+                }
+
 
             };
         };
@@ -23,7 +26,10 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
                     rtv[rtv.length] = aderr[ijk];
                 };
             } else {
-                rtv[rtv.length] = this[i];
+                if (!Array.isArray(this[i])) {
+                    rtv[rtv.length] = this[i];
+                }
+
             };
         };
         return rtv;
@@ -63,6 +69,7 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
         for (var i = 0; i < this.children.length; i++) {
             if (this.children.item(i).getAttribute(attr) == value) {
                 rtv[rtv.length] = this.children.item(i);
+
             };
             if (this.children.item(i).children.length > 0) {
                 rtv[rtv.length] = this.children.item(i).getElementsByAttrValue(attr, value);
