@@ -57,36 +57,242 @@
             width: 50em;
             overflow: scroll;
         }
+
+        .tabs .tabs_group .tab {
+            display: none;
+        }
+
+        .tabs .tabs_group .tab.showntab {
+            display: block !important;
+        }
+
+        .tabs .tabs_group {
+            display: flex;
+        }
+
+        .tabs .tab_select {
+            display: flex;
+        }
+
+        .docinner {
+            height: max-content;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 
 <body>
+    <script>
+        var thistab0;
+        var thistabselect0;
+
+        var thistab1;
+        var thistabselect1;
+
+        var thistab2;
+        var thistabselect2;
+        var scriptel0;
+        var tab1shown = false;
+    </script>
     <div class="body">
         <div class="header">
-
+            <h1>introduce ColourgreyShorterJS.js & how to use ColourgreyShorterJS.js</h1>
         </div>
-        <div class="code codearea-code">
-            <pre>
-                <code class="language-javascript">
+        <div class="tabs">
+            <div class="tab_select">
+                <div data-tabselectnumb="0">basic usage examples</div>
+                <div data-tabselectnumb="1">real demo</div>
+                <div data-tabselectnumb="2">docs</div>
+            </div>
+            <div class="tabs_group">
+
+                <div class="tab tab_code" data-tabnumb="0" id="tab_code">
+                    <div class="code codearea-code">
+                        <pre>
+                        <code class="language-javascript">
                     var mynewarray = [0,['a',1],'b'];
                     var mynewsimplearray = mynewarray.returnAllInOneArr();
                     console.log(mynewsimplearray);
                     /* output in browser console: [0,'a',1,'b'] */
-
+<br>
                     var mynewstring = "test";
                     var mynewstringHW = mynewstring.insertOn("Hello World!",3);
                     console.log(mynewstringHW);
                     /* output in browser console: "tesHello World!t" */
-
+<br>
                     </code>
                     <code class="language-html">
-                    &lt;div data-attr=&quot;myDiv&quot;&gt;change innerHTML here&lt;/div&gt;
+                    &lt;div data-attr=&quot;myDiv&quot;&gt;innerHTML will be changed here(in 1200 milliseconds)&lt;/div&gt;
                     </code><code class="language-javascript">
                     window.setTimeout(function(){document.getElementsByAttrValue("data-attr","myDiv")[0].innerHTML="Hello World!";},1200);
-
+<br>
                     /* in 1.2 seconds, innerHTML of first div that has 'myDiv' data-attr will change to "Hello World!" */
-                </code>
-            </pre>
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <div class="tab tab_demo" data-tabnumb="1" id="tab_demo">
+                    <div data-attr="myDiv">innerHTML will be changed here(in 1200 milliseconds)</div>
+                    <script>
+                        document.getElementsByAttrValue("data-tabselectnumb", "1")[0].addEventListener("click", function (ev2) {
+                            if (tab1shown == false) { tab1shown = true };
+                            if (!thistab1.classList.contains("showntab")) {
+                                thistab1.classList.add("showntab");
+                                thistab0.classList.remove("showntab");
+                                thistab2.classList.remove("showntab");
+                                if (tab1shown == true) {
+                                    document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "innerHTML will be changed here(in 1200 milliseconds)";
+                                    window.setTimeout(function () { document.getElementsByAttrValue("data-attr", "myDiv")[0].innerHTML = "hello World!"; tab1shown = false }, 1200);
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+                <div class="tab tab_docs" id="tab_docs" data-tabnumb="2">
+                    <div class="docsinner">
+                        <div class="doc" data-docnumb="0" id="doc-c0">
+                            <h2 class="doc_header">1.How to use</h2>
+                            <div class="doc_body">create a script tag in <span style="font-weight: bold;">head tag or
+                                    the first of top of body tag(but script that you write code yourself to use realy,
+                                    <span style="text-decoration:line-through;color:grey">of course!!!</span> bottom of
+                                    body tag. if you do not do so, contents in body tag are not completed to be loaded,
+                                    your script can't read all elements in body tag.)</span>. then set its src to
+                                relative path my ColourgreyShorterJS.js file(if the page you use ColourgreyShorterJS is
+                                on hosted site,you can set to absolute path <span
+                                    style="text-decoration: line-through;color: grey;">of course!!! man who ask it is
+                                    fool!!!</span>)
+                                <br>
+                                or for another <span style="text-decoration: line-through;color: grey;">very
+                                    cunning</span> way, copy <a
+                                    href="http://github.com/chonggi-tokhu/ColourgreyShorterJS/blob/main/ColourgreyShorterJS/ColourgreyShorterJS.js"
+                                    target="_blank">my ColourgreyShorterJS code</a> and paste to your script(...)
+                                <br>
+                                <span style="text-decoration: line-through;color: gray;">symbol of 'ghuck you' is shape
+                                    that you raise your middle finger.there are two best unicode characters for
+                                    expressing the shape, they are 凸 and ㅗ. first is one of chinese character that means
+                                    'convex',second is one of han'gŭl characters for vowel. second just has shape that
+                                    looks like shape that you raise middle finger. it doesn't have any relationships of
+                                    meaning with ghuck you. I hope copying and pasting it to use for unicode character
+                                    that means 'ghuck you' well to you~~~</span>
+                            </div>
+                        </div>
+                        <div class="doc" data-docnumb="1" id="doc-c1">
+                            <h2 class="doc_header">2. Usages</h2>
+                            <div class="doc_body">
+                                Usages from basic to advanced
+                            </div>
+                            <div class="under_docs">
+                                <div class="doc" data-docnumb="1-0" id="doc-c1-0">
+                                    <h2 class="doc_header">2-1. methods and properties of objects of variables that
+                                        their data types are array I add</h2>
+                                    <div class="doc_body">
+                                        <h3><span>(an array).returnAllInOneArr()</span></h3>
+                                        <p><span>this function returns one array that has no properties that are array.
+                                                if a child property in parent object array is array,child of child
+                                                properties in the child array property are in parent object array. my
+                                                english is terrible so read code below to understand my words.</span>
+                                        </p>
+                                        <div class="codearea-code">
+                                            <pre>
+                                                <code class="language-javascript">
+                                                    var myarray = [1,['a',[2,3,4],'b',5,'c','d'],['e'],6,7,8,[9,'f','g'],'h',0];
+                                                    var mynewarray = myarray.returnAllInOneArr();
+                                                    /* mynewarray is [1,'a',2,3,4,'b',5,'c','d','e',6,7,8,9,'f','g','h',0] here. */
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <p><span style="text-decoration: underline;color: #be0456;">It takes no
+                                                parameters.</span> <span
+                                                style="text-decoration: underline;color: #be0456;">It does not change
+                                                original array.</span></p>
+                                    </div>
+                                    <div class="doc_footer"></div>
+                                </div>
+                                <div class="doc" data-docnumb="1-1" id="doc-c1-1">
+                                    <h2 class="doc_header">2-2. methods and properties of objects of variables that
+                                        their data types are string I add</h2>
+                                    <div class="doc_body">
+                                        <h3><span>(a string variable).splitByIdx()</span></h3>
+                                        <p><span>string.split method splits at each index of character split method
+                                                takes as a parameter. but splitByIdx method splits at index splitByIdx
+                                                method takes as a parameter that is an integer.</span></p>
+                                        <div class="codearea-code">
+                                            <pre>
+                                                <code class="language-javascript">
+                                                    var mystring ="Hello World!";
+                                                    var mynewstring = mystring.splitByIdx(3);
+                                                    /* mynewstring is ["hel", "lo World!"] */
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <p><span style="text-decoration: underline;color: #be0456;">It does not change
+                                                original string.</span></p>
+                                        <br>
+                                        <hr>
+                                        <br>
+                                        <h3><span>(a string variable).insertOn()</span></h3>
+                                        <p><span>this method inserts string from first parameter at integer from second
+                                                parameter to parent string object.</span></p>
+                                        <div class="codearea-code">
+                                            <pre>
+                                                <code class="language-javascript">
+                                                    var mystring = "Hello World!";
+                                                    var mynewstring = mystring.insertOn(" ",4).insertOn("f",6);
+                                                    /* mynewstring is "Hell of World!" */
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <p><span style="text-decoration: underline;color: #be0456;">It does not change
+                                                original string.</span></p>
+                                    </div>
+                                </div>
+                                <div class="doc" data-docnumb="1-2" id="doc-c1-2">
+                                    <h2 class="doc_header">2-3. methods and properties of objects of variables that are
+                                        instance of HTMLElement or Document</h2>
+                                    <h3>(an HTMLElement or Document object).getElementsByAttrValue(attribute name,
+                                        attribute value)</h3>
+                                    <div class="codearea-code">
+                                        <pre>
+                                            <code class="language-html">
+                                                &lt;div data-attr="myDiv"&gt;fuck you&lt;/&gt;
+                                            </code>
+                                            <code class="language-javascript">
+                                                function IloveYoufunc(){document.getElementsByAttrValue("data-attr","myDiv")[0].innerHTML=`I love you. I'm sorry that I told you f-word.`;}
+                                                window.setTimeout(IloveYoufunc,1000);
+                                                /* in 1 second, text in div[data-attr="myDiv"] will tell 'I love you' and appologise to you. LOL */
+                                            </code>
+                                        </pre>
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <h3><span>(an HTMLElement or Document object).getEl_Class, .getEl_Id,
+                                            .getEl_Attr</span></h3>
+                                    <p><span>each is the same as .getElementsByClassName, .getElementById,
+                                            .getElementsByAttrValue</span></p>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <h3><span>(an HTMLElement or Document object).getEl_CSS</span></h3>
+                                    <p><span>it's similar to .querySelectorAll but returned value is instance of
+                                            HTMLCollection.</span></p>
+
+                                </div>
+                                <div class="doc" data-docnumb="1-3" id="doc-c1-3">
+                                    <h2 class="doc_header"><span>2-4. NodeList methods and properties</span></h2>
+                                    <h3>(a NodeList object).toArray()</h3>
+                                    <p><span>it returns an array from parent NodeList object</span></p>
+                                </div>
+                                <div class="doc" data-docnumb="1-4" id="doc-c1-4">
+                                    <h2 class="doc_header"><span>2-5. HTMLCollection methods and properties</span></h2>
+                                    <h3>(an HTMLCollection object).toArray()</h3>
+                                    <p><span>it returns an array from parent HTMLCollection object</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <link rel="stylesheet"
@@ -96,8 +302,49 @@
     <!-- and it's easy to individually load additional languages -->
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
     <script>
-        $(`.codearea-code`).each(function (index, el) {
+        document.querySelectorAll(`.codearea-code pre code`).forEach(function (el, idx, parel) {
             hljs.highlightElement(el);
+        });
+    </script>
+    <script id="myscript">
+        document = new Document();
+        thistabselect0 = document.getEl_Class("tabs")[0].getEl_Class("tab_select")[0].getElementsByAttrValue("data-tabselectnumb", "0")[0];
+        thistab0 = document.getEl_Class("tabs")[0].getEl_Class("tabs_group")[0].getElementsByAttrValue("data-tabnumb", "0")[0];
+
+        thistabselect1 = document.getEl_Class("tabs")[0].getEl_Class("tab_select")[0].getElementsByAttrValue("data-tabselectnumb", "1")[0];
+        thistab1 = document.getEl_Class("tabs")[0].getEl_Class("tabs_group")[0].getElementsByAttrValue("data-tabnumb", "1")[0];
+
+        thistabselect2 = document.getEl_Class("tabs")[0].getEl_Class("tab_select")[0].getElementsByAttrValue("data-tabselectnumb", "2")[0];
+        thistab2 = document.getEl_Class("tabs")[0].getEl_Class("tabs_group")[0].getElementsByAttrValue("data-tabnumb", "2")[0];
+
+        thistabselect0.addEventListener("click", function (ev) {
+            if (!thistab0.classList.contains("showntab")) {
+                tab1shown = false;
+                thistab0.classList.add("showntab");
+                thistab1.classList.remove("showntab");
+                thistab2.classList.remove("showntab");
+            }
+        });
+
+        thistabselect2.addEventListener("click", function (ev) {
+            if (!thistab2.classList.contains("showntab")) {
+                tab1shown = false;
+                thistab2.classList.add("showntab");
+                thistab0.classList.remove("showntab");
+                thistab1.classList.remove("showntab");
+            }
+        });
+        window.addEventListener("load", function (ev) {
+            var parsedhashtext = new URL(decodeURI(window.location.href)).hash.replace('#', '');
+            if (parsedhashtext == 'tab_code') {
+                thistab0.classList.add("showntab");
+            }
+            if (parsedhashtext == 'tab_demo') {
+                thistab1.classList.add("showntab");
+            }
+            if (parsedhashtext == 'tab_docs') {
+                thistab2.classList.add("showntab");
+            }
         });
     </script>
 </body>

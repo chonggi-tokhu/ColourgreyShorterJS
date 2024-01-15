@@ -1,16 +1,15 @@
 var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parameter; (typeof document == 'undefined') ? (function () { var document = new Doc(); })() : (function () { document = new Doc(); })(); globalThis['document'] = document; return { Arrtest: [0, ['a', 1], 'b'], StrTest: "Hello World!", newDoc: document, }; })((function () {
-    function returnAllInAnArr(arr) {
+    function returnAllInOneArr(arr) {
         var rtv = [];
         for (var i = 0; i < arr.length; i++) {
-            if (arr[i].length > 0) {
-                var aderr = returnAllInAnArr(arr[i]);
+            if (arr[i].length > 0 && Array.isArray(arr[i])) {
+                var aderr = returnAllInOneArr(arr[i]);
                 for (var ijk = 0; ijk < aderr.length; ijk++) {
                     rtv[rtv.length] = aderr[ijk];
                 };
             } else {
-                if (!Array.isArray(arr[i])) {
-                    rtv[rtv.length] = arr[i];
-                };
+                rtv[rtv.length] = arr[i];
+
             };
         };
         return rtv;
@@ -18,17 +17,13 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
     Array.prototype.returnAllInOneArr = function () {
         var rtv = [];
         for (var i = 0; i < this.length; i++) {
-            if (Array.isArray(this[i])) {
-                if (this[i].length > 0) {
-                    var aderr = this.returnAllInAnArr(arr[i]);
-                    for (var ijk = 0; ijk < aderr.length; ijk++) {
-                        rtv[rtv.length] = aderr[ijk];
-                    };
-                } else {
-                    rtv[rtv.length] = null;
+            if (this[i].length > 0) {
+                var aderr = returnAllInOneArr(this[i]);
+                for (var ijk = 0; ijk < aderr.length; ijk++) {
+                    rtv[rtv.length] = aderr[ijk];
                 };
             } else {
-                rtv[rtv.length] = arr[i];
+                rtv[rtv.length] = this[i];
             };
         };
         return rtv;
@@ -36,7 +31,7 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
     String.prototype.splitByIdx = function (idx) {
         if (typeof idx == 'number' && !isNaN(idx)) {
             var rtv = [
-                this.slice(0, idx - 1),
+                this.slice(0, idx),
                 this.slice(idx, this.length - 1),
             ];
             return rtv;
@@ -73,7 +68,7 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
                 rtv[rtv.length] = this.children.item(i).getElementsByAttrValue(attr, value);
             };
         };
-        var rtv2 = returnAllInAnArr(rtv);
+        var rtv2 = returnAllInOneArr(rtv);
         return rtv2;
     };
     Document.prototype.getElementsByAttrValue = function (attr, value) {
@@ -87,7 +82,7 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
                 rtv[rtv.length] = this.children.item(i).getElementsByAttrValue(attr, value);
             };
         };
-        var rtv2 = returnAllInAnArr(rtv);
+        var rtv2 = returnAllInOneArr(rtv);
         return rtv2;
     };
     HTMLElement.prototype.getElementById = function (IdParam) {
@@ -189,6 +184,12 @@ var ColourgreyShorterJS = (function (parameter) { var { Arr, Str, Doc } = parame
             };
             return convertedFromNodeListToHTMLCollection;
         };
+    };
+    HTMLElement.prototype.getEl_Attr = function (attrname, attrvalue) {
+        return this.getElementsByAttrValue(attrname, attrvalue);
+    };
+    Document.prototype.getEl_Attr = function (attrname, attrvalue) {
+        return this.getElementsByAttrValue(attrname, attrvalue);
     };
     return { Arr: Array, Str: String, Doc: Document };
 })());
